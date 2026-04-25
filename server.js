@@ -50,7 +50,7 @@ app.get('/callback', async (req, res) => {
     console.log("Access:", access_token);
     console.log("Refresh:", refresh_token);
 
-    res.send("Login successful!");
+    res.render("success");
   } catch (err) {
     console.error(err.response?.data || err.message);
     res.render("index");
