@@ -65,7 +65,9 @@ async function addTokenToDB(access_token, refresh_token) {
     )
     const user = userResponse.data;
     console.log(user)
-  } catch (err) { }
+  } catch (err) { 
+    console.log(err.message)
+  }
 }
 
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
