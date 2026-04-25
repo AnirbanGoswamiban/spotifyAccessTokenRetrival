@@ -44,6 +44,8 @@ app.get('/callback', async (req, res) => {
       }
     );
 
+    console.log(tokenResponse)
+    console.log(tokenResponse.data)
     const { access_token, refresh_token } = tokenResponse.data;
     console.log("Access:", access_token);
     console.log("Refresh:", refresh_token);
@@ -51,7 +53,7 @@ app.get('/callback', async (req, res) => {
     res.send("Login successful!");
   } catch (err) {
     console.error(err.response?.data || err.message);
-    res.send("Error during authentication");
+    res.render("index");
   }
 });
 
