@@ -77,7 +77,7 @@ async function addTokenToDB(access_token, refresh_token) {
     const user = userResponse.data;
     console.log(user)
   } catch (err) { 
-    console.log(err.message)
+    console.log(err)
   }
 }
 
