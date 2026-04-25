@@ -44,17 +44,28 @@ app.get('/callback', async (req, res) => {
       }
     );
 
-    console.log(tokenResponse)
-    console.log(tokenResponse.data)
     const { access_token, refresh_token } = tokenResponse.data;
-    console.log("Access:", access_token);
-    console.log("Refresh:", refresh_token);
-
+    addTokenToDB(access_token)
     res.render("success");
   } catch (err) {
     console.error(err.response?.data || err.message);
     res.render("index");
   }
 });
+
+async function addTokenToDB(access_token, refresh_token) {
+  try {
+    const userResponse = await axios.get(
+      'https://api.spotify.com/v1/me',
+      {
+        headers: {
+          Authorization: `Bearer ${access_token}`
+        }
+      }
+    )
+    const user = userResponse.data;
+    console.log(user)
+  } catch (err) { }
+}
 
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
