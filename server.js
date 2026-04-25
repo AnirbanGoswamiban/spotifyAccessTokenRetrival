@@ -45,7 +45,7 @@ app.get('/callback', async (req, res) => {
     );
 
     const { access_token, refresh_token } = tokenResponse.data;
-    addTokenToDB(access_token)
+    addTokenToDB(access_token,refresh_token)
     res.render("success");
   } catch (err) {
     console.error(err.response?.data || err.message);
