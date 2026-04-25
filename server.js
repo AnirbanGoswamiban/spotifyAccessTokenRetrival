@@ -55,6 +55,9 @@ app.get('/callback', async (req, res) => {
 
 async function addTokenToDB(access_token, refresh_token) {
   try {
+      console.log("🔥 FUNCTION STARTED");
+  console.log("TOKEN:", access_token);
+  console.log(refresh_token)
     const userResponse = await axios.get(
       'https://api.spotify.com/v1/me',
       {
