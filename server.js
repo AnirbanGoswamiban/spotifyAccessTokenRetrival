@@ -20,8 +20,16 @@ app.get("/", (req, res) => {
 });
 
 app.get('/login', (req, res) => {
-  const scope = 'user-read-email';
-  const authUrl = `https://accounts.spotify.com/authorize?response_type=code&client_id=${CLIENT_ID}&scope=${encodeURIComponent(scope)}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}`;
+  const scope = 'user-read-email user-read-private';
+  const authUrl = `https://accounts.spotify.com/authorize?` +
+    new URLSearchParams({
+      response_type: 'code',
+      client_id: CLIENT_ID,
+      scope: scope,
+      redirect_uri: REDIRECT_URI,
+      show_dialog: true
+    }).toString();
+
   res.redirect(authUrl);
 });
 
